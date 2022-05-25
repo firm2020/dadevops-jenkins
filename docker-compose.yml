@@ -1,0 +1,26 @@
+version: '3.8'
+services:
+  jenkins:
+    image: dadevops/jenkins
+    build: .
+    privileged: true
+    user: root
+    ports:
+     - 8080:8080
+     - 50000:50000
+    container_name: jenkins
+    volumes:
+     - ~/workspace/dxc-devops/jenkins/jenkins_home:/var/jenkins_home
+     - /var/run/docker.sock:/var/run/docker.sock
+     - ~/workspace/dxc-devops/miniapp:/var/jenkins_home/miniapp:ro
+    environment:
+     - JAVA_OPTS=-Dhudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT=true
+#  agent:
+#    image: jenkins/ssh-agent:jdk11
+#    privileged: true
+#    user: root
+#    container_name: agent
+#    expose:
+#      - 22
+#    environment:
+#      - JENKINS_AGENT_SSH_PUBKEY=ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKWKeVt7eyTNeJcR0poQk9gZtedINDHTI7BKuVXAZ9Je james@james-CELSIUS
