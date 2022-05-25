@@ -10,9 +10,9 @@ services:
      - 50000:50000
     container_name: jenkins
     volumes:
-     - ~/workspace/dxc-devops/jenkins/jenkins_home:/var/jenkins_home
+     - ~/workspace/dxc-devops/dadevops-jenkins/jenkins_home:/var/jenkins_home
+     - ~/workspace/dxc-devops/dadevops-miniapp:/var/jenkins_home/miniapp:ro
      - /var/run/docker.sock:/var/run/docker.sock
-     - ~/workspace/dxc-devops/miniapp:/var/jenkins_home/miniapp:ro
     environment:
      - JAVA_OPTS=-Dhudson.plugins.git.GitSCM.ALLOW_LOCAL_CHECKOUT=true
 #  agent:
